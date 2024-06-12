@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Akanksha Hello</h1>
+    <button id="stop" >Stop</button>
+</body>
+<script>
+    // setTimeout(function(){
+    //     console.log("Akanksha");
+    // }, 2000)
+
+    // setInterval(function(){
+    //     console.log("Set interval called");
+    // }, 2000)
+    const sayAkanksha = function () {
+        console.log("Akanksha");
+    }
+    
+
+    const headerFunc = function () {
+        const header = document.querySelector('h1')
+        header.innerHTML = "Akanksha Pawar";
+    }
+    const stopMe = setTimeout(headerFunc, 2000)
+
+    const stopButton = document.querySelector('#stop').addEventListener('click', function(e)
+{
+    clearInterval(stopMe)
+})
+
+</script>
+
+</html>

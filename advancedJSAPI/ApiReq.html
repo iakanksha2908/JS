@@ -1,0 +1,54 @@
+<!-- XHR - legacy -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const xhr = new XMLHttpRequest();
+        const requestUrl = 'https://api.github.com/users/hiteshchoudhary'
+        const body = document.querySelector('body')
+        xhr.open('GET', requestUrl)
+        // console.log(xhr.readyState)
+        xhr.onreadystatechange = function () {
+            // console.log(xhr.readyState)
+            if(xhr.readyState === 4)
+            {
+                const data = JSON.parse(this.responseText)
+                const imgUrl = data.avatar_url
+                console.log(imgUrl);
+                const xhr2 = new XMLHttpRequest();
+                xhr2.responseType = 'blob'
+
+                xhr2.open('GET', imgUrl)
+                 console.log(xhr2.readyState)
+                xhr2.onreadystatechange = function()
+                {
+                    if(xhr2.readyState === 4)
+                    {
+                        const myImage = new Image()
+                        myImage.crossOrigin = "";
+                        const url = window.URL.createObjectURL(this.response);
+                        myImage.src = url
+                        body.appendChild(myImage)
+                        const followers = data.followers
+                        const h1 = document.createElement('h1')
+                        h1.innerHTML = followers
+                        body.appendChild(h1)
+                    }
+                }
+
+                xhr2.send()
+            }
+
+        }
+        xhr.send()
+    </script>
+</body>
+
+</html>

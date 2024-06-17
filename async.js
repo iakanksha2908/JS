@@ -5,7 +5,7 @@
 
 
 //execution context - 
-line one by one exec hota hai
+// line one by one exec hota hai
 
 // blocking vs non blocking code 
 // block the flow - eg. read file sync

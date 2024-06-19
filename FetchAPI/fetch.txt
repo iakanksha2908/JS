@@ -1,0 +1,2 @@
+fetch starts the process of fetching a resource from the network 
+returns a promise which is fulfilled once the response is available

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure</title>
+</head>
+
+<body>
+    <button id="orange">orange</button>
+    <button id="green">green</button>
+</body>
+<script>
+
+    // function init() {
+    //     let name = "Mozilla"; // name is a local variable created by init
+    //     function displayName() {
+    //         // displayName() is the inner function, that forms the closure
+    //         console.log(name); // use variable declared in the parent function
+    //     }
+    //     displayName();
+    // }
+    // init();
+
+    // closure
+    // function makeFunc() {
+    //     const name = "Mozilla";
+    //     function displayName() {
+    //         console.log(name);
+    //     }
+    //     return displayName;
+    // }
+
+    // const myFunc = makeFunc();
+    // myFunc();
+
+
+
+</script>
+<script>
+    // const orange = document.getElementById("orange")
+    // orange.addEventListener('click', function(){
+    //     document.querySelector('body').style.backgroundColor = "orange";
+    // })
+
+    // const green = document.getElementById("green")
+    // green.addEventListener('click', function(){
+    //     document.querySelector('body').style.backgroundColor = "green";
+    // })
+
+    // what if I have 100 buttons, how will that work. Create a separate clickHandler to handle all the buttons
+    function clickHandler(color) {
+        document.querySelector('body').style.backgroundColor = `${color}`;
+    }
+
+    function clickHandlerSolution(color) {
+        
+        return function inner() {
+            document.querySelector('body').style.backgroundColor = `${color}`;
+        }
+    }
+
+    const orange = document.getElementById("orange")
+    orange.onclick = clickHandler
+
+    const green = document.getElementById("green")
+    green.onclick = clickHandler
+
+    //this wont work as you are not executing the function but passing only the ref(definition)
+    // orange.onclick = clickHandler('orange')
+    // green.onclick = clickHandler('green')
+
+    //In this case now, the functions got executed even before clicking the button
+    // Solution - 
+    orange.onclick = clickHandlerSolution('orange')
+    green.onclick = clickHandlerSolution('green')
+
+    // Now this problem is resolved using closure. 
+    
+
+
+</script>
+
+</html>
